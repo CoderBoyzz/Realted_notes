@@ -1,0 +1,96 @@
+/*
+*	Apache POI API for data driven testing. <practice> <theory> <C-use>
+*	
+*/
+
+*********
+	Apache POI API
+	Data driven testing from Excel.
+	
+>>	Maven Dependencies setup:
+	poi-oo.xml and poi
+	
+>> Strategy to Access Excel Data: 
+
+	> Create object for XSSFWorkbook class.
+	@ XSSFWorkbook class has all the data to handle and automate and handle the xlsx file.
+	> Get Access to Sheets.
+	@ get access to all the rows which are present in the xl sheet. s
+	>	 Get Access to all row of sheet.
+	>	Access to a specific row from all rows.
+	>	Get Access to all ceils of Rows.
+	> Access the Data from Excel into arrays.
+ 
+*********
+
+>	Data driven testing using POI. Apache POI API is a framework where the data is injected from excel into the test.
+	interview question>
+> 		 * we need to identify the complete test cases column by scanning we need to
+		 * identify the column and we need to identify the complete test case column and
+		 * look for every thing that is present in the column. we need to pick up each
+		 * element so that the scanning each row with corresponding rows result in
+		 * getting the data we need to feed to our test.
+
+>		sheet is a collection of rows and row is collection of cells.
+>		cell holds value/data given.
+
+*********
+		****Syntax preconfigure:**** 
+		String path = System.getProperty("user.dir") + "\\DataDriven.xlsx"; // setting the path
+			FileInputStream fin = new FileInputStream(path); // setting the input stream object
+			XSSFWorkbook workbook = new XSSFWorkbook(fin); // accepts a fileInput stream object as an argument
+			XSSFSheet sheet = null;
+			
+			// do get desired Sheet out of sheet #1, #2, #3 and so on.
+			int count = workbook.getNumberOfSheets(); // get the no. of sheets in file
+			
+			for (int i = 0; i < count; i++) {
+				if (workbook.getSheetName(i).equalsIgnoreCase("testdata")) { // get the sheet name.
+					sheet = workbook.getSheetAt(i);
+				}
+			}
+		
+		*****sample code:******
+		
+		Iterator<Row> rows = sheet.iterator();
+			Row firstRow =	rows.next();
+			Iterator<Cell> cells = firstRow.cellIterator();
+			Cell cellValue = null;
+			
+			int col = 0;
+			while(cells.hasNext()) {
+				cellValue = cells.next();
+				if(cellValue.getStringCellValue().equalsIgnoreCase("Testcases")) {
+					break;
+				} else {
+					col++;
+				}
+			}
+			
+			
+			while(rows.hasNext()) {
+				Row r = rows.next();
+				if(r.getCell(col).getStringCellValue().equalsIgnoreCase("Add Profile")) {
+					Iterator<Cell> addedProfiles = r.cellIterator();
+					while(addedProfiles.hasNext()) {
+						Cell profileData = addedProfiles.next();
+						System.out.println("Profile : " + profileData.getStringCellValue());
+					}
+				}
+			}
+		
+*********
+
+>	 how to deal with a number inside a cell.
+> cell.getCellTypeEnum() == CellType.STRING
+	now ****CellType getCellTypeEnum()****is deprecated. And we need to find and alternative;
+>	 NumberToTextConverter.toText(profileData.getNumericCellValue())
+	convert the cell with number values to Text and provide ability to use them in test.
+
+
+
+
+
+
+
+*********

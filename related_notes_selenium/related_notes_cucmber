@@ -1,0 +1,172 @@
+/*
+ * @topic :  Behavior driven testing/dev using Cucumber FrameWork.
+ * @definition :  	Behavior driven development is an approach which we use in agile software development.
+ * @tags : <theory> <practice>
+ *
+ * @note: section : 27, 28 and 39 are to be done later and finished. Selenium interview questions and defect tracking tools.
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+ !1 why Cucumber? TestCases specifications in Behavior Driven Development:
+ 		Step 1:	Test cases should be defined in the Business level by following a ubiquitous language.
+ 					Ubiquitous language(definition) : It is a semi-(formal) language that is shared by all the members 
+ 					of a software development team - both software developers and non - technical personnel. 
+ 					
+ 		Step 2:	Templates in writing Test cases for Business Scenarios. Its time to Decide what Test cases are sufficient
+ 				 to clarify Business Scenario working. Test cases are written in the reverse order to the given template.
+ 		 				
+ 		Step 3:	
+ 		Step 1:
+ 		
+ !2	The developer will take the testcase as reference to develop his component and QA guy will again 
+ 		use the same testcase to test his component.
+ !3 	In traditional waterfall model generally they will give you the BRD(Business Requirements Document) document 
+ 		and developer will have his own perspective and tester will have his own perspective. There might be a mismatch 
+ 		b/w the two perspective.
+ !4 	There are smoke tests and Regression tests and even Sanity tests.
+ 
+ ********
+ NOTES:
+ 
+ 	Behavior driven development is an approach which we use in agile software development.
+ 	we do not have any business requirement to start testing/development the application. The business requirement 
+ 	will be in the form of Test case (requirement are itself written as a part of test case) and not written in the form a 
+ 	document stating these are the business requirement. The developer will take the test case as reference to develop 
+ 	his component and QA guy will again use the same Test case to test his component with same document.     
+ 	
+ 
+  EFFECTIVE E.G. :
+  
+  Scenario #1: 
+  		In BRD document there might be a mismatch b/w the two perspective of developer and tester. suppose, when the 
+  		product owner or the business analyst who define the requirements by sitting with client. Generally, BA design 
+  		the requirements for that project. Then that document are developed b/w developer and testers. BA may have in 
+  		on terminology in defining that requirement and when the developer tries to understand he may assume that 
+  		requirement in other way and may be a mismatch in the understanding b/w a developer and BA. QA guys may 
+  		test it they may look at the requirement and think something different. miscommunication is a problem
+  		which could cause a blunder and to solve this problem they have defined a ubiquitous language.
+  		Which will be common for every one. It is ina form of standard Template used by Devs, BA and testers.
+  		But from QA perspective we call it test case. They write a template so all of them can follow the template 
+  		standard even those block head QAs can write their specification using those templates. 
+  		 
+  Scenario #2:
+  		we are developing/deriving test cases for first one person with zero balance account and another one is one who 
+  		doesn't have a credit card access and so on until we get all the possible combination of the test cases needed.
+  
+ ^.^ Go Through Points ^.^
+ >	Understanding the importance of Behavior Driven Development 
+ >	Cucumber Framework architecture and its core functionalities.
+ >	Selenium integration with Cucumber.
+ 
+ 
+ ^.^ Advantages Of BDD ^.^
+ >	This can be used as Standard Template where all QA can stick to one common standards of defining
+ 	test cases.
+ 	
+ >	Each Scenario reflects a Business Value.
+ 
+ >	We can estimate the Test coverage happened for Each Business outcome by going through Test 
+ 	scenarios.
+ 	>> as you are deriving n no. of test cases from the Scenario then you can tell yes these
+ 		are all the coverage of this particular scenario. you can basically track how much testing you
+ 		are doing for that particular scenario.
+ 		
+ > 	We can tag these Annotations to Selenium Automation and execute the Business Test cases. 
+ 	>>	you can pass the file with all the test cases then you can see that the line which failed 
+ 		during execution is **thick** Red. This is the reason most of the people use this and also 
+ 		this means no logs no error report/ extent reports etc. pure agile development.
+ 
+ >	Common Standardized Test cases template for both Manual and Automating test cases.
+ 	>>	In most of the process manual people will have their own test cases and automation people 
+ 		will have their own test cases. so with bdd you can use a standard template as manual team 
+ 		and automation team can use these test cases.
+ 		
+ 
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+--	Behavior Driven Development: -- how to develop that template and how to define the requirement in that template.
+
+	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		In order to ( Achieve Something) -> Business outcome.
+		
+		As a (Role)
+		
+		I want to (Do this)
+		
+		For e.g. 
+		In order to Pay Credit Card Payment.
+		
+		As a NetBanking sole owner. -- who have credit section access.
+		
+		I want to Navigate to credit card section, Enter amount and process my Payment.
+		
+		For e.g. 
+		In order to Pay Credit Card Payment.
+		
+		As a NetBanking sole owner. -- who have credit section access.
+		
+		I want to Navigate to credit card section, Enter amount and process my Payment.
+	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		
+ -- Syntax for writing Test cases: 
+ 
+	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		Given (what you need to have to perform action), -Prerequisites.
+		
+		When (performs action) - Action.
+		
+		Then (the desired outcome for the user) - Validation.
+		
+		For e.g. 
+		Given: An account with Zero balance.
+		
+		When: I navigate to Credit card Payment and click on Submit for some given amount.
+		
+		Then: It should throw some error message saying insufficient balance.
+		
+		For e.g. 2
+		Given: An account with sufficient balance but do not possess Credit Card.
+		
+		When: I navigate to Credit Card Payment Section.
+		
+		Then: It should say that Invalid Access: no Credit Card Info available. -- error message
+	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ NOTES on Syntax:
+ 
+	  ***Achieve something*** is a business requirement and business requirement in the sense that what you want to 
+	  achieve in order fulfill a ***business*** outcome (every template you write have a business outcome or a result) 
+	  for e.g. adding friend in FB the business outcome is that we could add a friend to our friend list. So, in the 
+	  first line what is the business outcome you are getting from this template. if there are 10 pages defined then 
+	  there are 10 business requirements we need to fulfill.
+	  
+	  As a ***role*** this means what role you need to perform in order to lets say adding friends to your friends 
+	  list. You need to be the owner of that account or something. same thing for net banking you need to be a user 
+	  for credit Card access and person who access to loans etc. all are different roles.   
+	  
+	  I want to ***do this / that*** so inorder for everything to work this is the part that needs attention by
+	  productions. Developer write a code so this works and fulfill the bussiness requirements and tester check 
+	  if every thing works flawless. 
+	  
+	  >>so do something so that now you can say. "i want to click on add friend to add a friend to my friend list."  
+	  
+	  now, every one can start a project without any misunderstanding. This are not a test cases this is template, if 
+	  we take waterfall or Agile model we get BRD and we have to work through it and write test cases but BDD and 
+	  common-ize we can derive the test cases using these templates. we can derive +ve test cases, -ve test cases a
+	  lot of it. test cases can be derived if there is no amount there should not be any where to enter amount.
+	  
+	  Now, for Test Cases Derivation we can go for any possibility like what if the balance input is greater then 
+	  the present balance or what if you left the field(amount) blank and click on submit. To satisfy the Business
+	  Scenarios we need to give n no. test cases to test (as QA)  
+	 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ NOTES on Code:
+ 
+ *******
+ closure:
+ 
+ ******** End *******
+ 

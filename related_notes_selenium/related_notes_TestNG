@@ -1,0 +1,95 @@
+/*
+*	Designing the framework by your own and use it to develop test environment. 
+*	testNG is one such component and can be used to develop your framework. 
+*/
+You can define multiple tests from single class.
+We can modularize the tests based on their functionalities.
+
+use syntax:-
+
+<class>
+	<methods>
+		<include>
+		<exclude>
+	</methods>
+</class> 
+
+look at the error and try to figure the solution to the problems occur.
+
+**********
+>@Test annotations is used to symbolize tests.
+**********
+
+>@beforeTest annotation is used to symbolize the prequisites config before running tests.
+for e.g. if you want to clean up the data or if you want to clean up some session data or Database or anything before running tests.
+like adding the appium server or setting-up the appium server could be done in this module.
+
+>@AfterTest annotation is used to run post testing codes.
+for e.g. like deleting cookies, halt the process, or read any reports generated. close the connections.
+
+***********
+
+>@BeforeSuit can be used to define some Environment variables that might be needed in connection establishment. for every release 
+you will get a new environment. we need to set up that new environment.
+for e.g. it could be used to set up the secure keys for restAPI. for google needed keys, zeera you need header key, for twitter you need owhat key?
+
+>@AfterSuite works the other way around.
+
+***********
+
+>@beforeMethod annotation is a class level stuff. it basically means which method will execute each time before executing any module and @AfterMethod
+works the other way around.
+can be used for clearing cache, or log data.
+
+***********
+>@beforeClass annotation makes the module execute before any other module of that class.
+>@AfterClass annotation works other way around.
+
+***********
+>testNG applies test on module of a given class in alphabetic order. so it will work.
+
+#1. concept of groups allows you to group the modules based on the functionality or accessibility regardless of the 
+	 class, creed or race.
+#2. syntax of helper attributes @annotation(groups=("name")) 
+	<groups>
+			<run>
+				<include name="smoke"/>
+			</run>
+		</groups>
+#3. reordering the modules is possible in testNG FW. Approach one is childish to change the name but Approach two is to use
+	  helper attributes @annotation(dependsOnMethods="method-name") sets the dependencies. @annotation(dependsOnMethods="method-name", "methodTwo")
+	  is also the syntax.
+#4. helper attribute to skip the module is @Annotation(enable=false). used to skip modules not interested to checkout. avoiding redflags.
+#5. helper attribute @Annotation(timeout=4000) basically wait for 4sec. before failing.
+
+************
+
+parameterization of XML file in TestNG.
+#1. (Approach) 
+for web testing you URL must be the same or your key should be same. 
+syntax, @Parameters({"url","Loanname"}) for multiple and @Parameters({"url"}) for single parameter.
+
+#2. (Approach) 
+#<Theory> #<practice> @DataProvider annotation  to achieve parameterization in TestNG suit. famous interview question.
+	  
+************
+TestNG Listeners and Running test parallel in TestNG.
+> you cannot monitor every thing so you take a screenshot when the test cases fail. so testNG have an intelligent mechanism to do 
+	exactly that. so it could reroute the code to a specific block when a test fails. and that block can have a screenshot code.
+	even with restAPI when the 404 or 200 authorization occur then the JSON response logs are printed using redirection.
+> Listeners Listen to your test cases and then if some thing fails it would redirect or if passed the it keeps on listening.
+> you need to create the class which implements the itestlisters interface. 
+> e.g. public class Listeners implements ITestListener { }
+> methods onTestStart(ITestResult), onTestFailedButWithinSuccessPercentage(ITestResult result) , onTestSkipped(ITestResult result) etc.
+> asssertions pass or fail the code. not the error/exceptions.
+
+> Performance testing is where you generally use parallel testing but ***not*** in functional testing in Real Life.
+> This is just a theoretical concept and for parallel run people use grids.
+> Even for appium they use multiple systems/emulators and multiple devices are connected to same network.
+> This is not a recommanded approach. But this might be okay at API level and for web practices..
+> syntax:
+	<suite name="Suite" parallel="tests" thread-count="5">
+	<test name="smoke Testing" parallel="classes" thread-count="5">
+	
+	
+************

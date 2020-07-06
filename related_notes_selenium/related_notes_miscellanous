@@ -1,0 +1,38 @@
+/*
+*	Extent Reports:
+*	
+*/
+
+**********
+>	Understanding the basic configuration of Extent Reports with Standalone Test.
+	These reports are very good and alot of companies are using this report.
+	1>	how to configure set a standalone Test.
+	2>	Then in E2E project we will integrate these configurations and integrate with testNG lessons.
+	3>	how to Generate Screenshots and Extent Reports and TestNG Listeners. 
+	
+> ScreenShot when test fails and pie chart and every thing.  
+
+**********
+@ Understanding Creating Extent Reports for single standalone Test.
+@	Generating Extent Reports for Parallel Test Execution.
+@	Attaching Screenshots to Reports for Failed Tests using TestNG Listeners.
+
+**********
+	// Extent Report and Extent Spark Reporter
+	> now Extent Spark Reporter is a helper class which will configure every thing to main class.
+	> Extent Report and this main class is responsible for every test run we can do.
+	> call attach Reporter() to attach the reporter and call setSystemInfo() to set all the system info.
+	> we need to set the report configuration with @befortest annotation as the configuration will required 
+		during the test.
+	> we need to call createTest() and connect the test to the report. This method monitors test 
+		and to end the test call flush() so report won't monitor your test.
+		we need to always write all this code we can create a TestNG utility to drive all this code.
+	> Report generation will happen after the test.
+	> ExtentTest test = extent.createTest("intial Demo"); now this test object wil get the created test values and listen to 
+		the test and feed back to the extent Report. using this tool you can do allot of thing like addScreenCapture or purposefully fail
+		 etc.
+		
+	
+
+**********
+**********

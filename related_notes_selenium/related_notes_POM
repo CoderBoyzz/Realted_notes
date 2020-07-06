@@ -1,0 +1,99 @@
+/*
+ * @topic : Page Object Model / Page Object Pattern.
+ * @definition : Its a design pattern which is used to write an effective code and follow best practices.
+ * @tags : <theory> <practice>
+ * 
+ * @note: Its a java based pattern and its same for Selenium, Appium and RestApi etc.
+ *  its basically means to write effective scripts.
+ */
+ 
+ ********Begin ******* 
+  Points to remember:  -- why page object pattern?
+  
+ !1.	Easy to maintain. -- of course.
+ !2.	Easy Readability of scripts -- definitely 
+ !3.	Reduce or Eliminate duplicate. -- may be.
+ !4.	Re-usability of code. -- of course.
+ !5.	Reliability.
+ 
+ ********
+ NOTES:
+ 
+ There are different types of designing pattern used behavior driven, data driven, keyboard driven, Hybrid pattern
+ and now the latest every one is adopting is page object pattern.
+ 
+ Ancient tech. like keyboard driven or hybrid driven pattern depends on excel(Spreadsheet) up to a point where 
+ script even drives from excel. And what if excel crashes? so we use POM for Selenium.
+ 
+ Object repository Mechanism:  
+ 		 we create a test case and start writing code to the Tester class and whenever i need to visit login related
+  		operation. suppose there are 1000 of test cases are there and all of them are pointing to this Login class. 
+  		Any change in credentials can be directly done on the Login class.
+  		
+ Page Object Factory pattern style(simplified):
+		uses Annotation @FindBy(LocatorType="Locator_value") where LocatorType can be anything from'
+		xpath, css, name, id etc. and value is Locator value and followed by WebElement elementName.
+		constructor needs to invoke method of org.openqa.selenium.support.PageFactory class initElements 
+		to initialize the elements and use them.
+		
+		latest page object model introduced by selenium. 
+  
+  EFFECTIVE E.G. :
+  
+  Scenario #1.
+  Suppose to automate //rediff.com, steps will be.
+  1. 	Home Page - create Java class(RediffHome) - grab all the objects available on the home page.
+ 		 (e.g. textBox, search Button and what ever we want for testing purposes.)
+  2. 	Now, we can navigate to sign in which contains a lots of objects/elements such as email /password input 
+  		and sign in button. 
+  3. 	Define Login Page - create Java Class(Login page) - grab all the login page element.
+  4.	so for each page we can navigate to or we want to navigate, we will create a class and grab all 
+  		the object in that class only. so each class instance refers to a particular instance of those pages.
+  5.	now we create a test case and start writing code to the Tester class and whenever i need to visit login related
+  		operation. suppose there are 1000 of test cases are there and all of them are pointing to this Login class. 
+  		Any change in credentials can be directly done on the Login class.
+  
+ 
+  
+ ^.^ Go Through Points ^.^
+ >	Just create only class corresponding to each page.
+ >	Use objects from those class to test in test cases.
+ >	redundant code is a not a problem.
+ 
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+  Object repository Mechanism:  
+ 	By userName = By.xpath("//input[@id='login1']");
+	By password = By.xpath("//input[@id='password']");
+
+ 
+  Page Object Factory pattern style(simplified):
+>>> 	@FindBy(xpath="//input[@id='login1']")
+	WebElement userName;
+	@FindBy(xpath="//input[@id='password']")
+	WebElement password;
+	
+>>>	 Constructor(WebDriver driver) {
+				PageFactory.initElements(driver, this);
+		}
+ 
+ 
+ *******
+ ###CODE TO R EMEMBER###
+ 
+ In testCase methods:
+ 		RediffLogin pg = new RediffLogin(driver);
+		
+		pg.getUserName().sendKeys("gunman@rediffmail.com");
+		pg.getPassword().sendKeys("thisispassword");
+		pg.getloginBtn().click();
+ 
+ *******
+ closure:
+ 	there are two ways in which page object model can be written. its up to you to choose a method. people with less knowledge of 
+ 	automation we suggest to use page factory and people with good coding skills we can use extra lines and go with normal POM.
+ 	Now, practice.
+ 
+ ******** End *******
+ 

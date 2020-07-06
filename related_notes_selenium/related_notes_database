@@ -1,0 +1,130 @@
+/*
+ * @topic : data driven testing using MySql
+ * @definition : Selenium/Appium scripting with Database Validation.
+ * @tags : <practice> <C-USE> <Theory>
+ *
+ * @note: For any java related framework whether for Selenium/Appium or any other.
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+ !1	Download MySql. -- editor and workbench.
+ 		-- install all products needed for developer default.
+ 		--	click Execute btn. 
+ !2	To Connect to MySql server we need credentials and that credential you need to pass it while installing.
+ 		-- by default username : root and password : "you give during installation" 
+ 		-- click finish.
+ 
+ ********
+ NOTES:
+ 
+ Using ***MySql*** server workbench.
+	 #1.	Go to the path provided in that particular installation.
+	 #2.	Inside MySql folder open the workbench folder open it.
+	 #3.	In the application we need to connect to the server so that we can access to the databases.
+ 			This is like hierarchy -- server > database > tables > Records > we get those records through 
+ 			query.
+ 	#4.	Click on the "Local Instance MySQL __ " and it will ask for the password. Give the password and 
+ 			it will set up a local server for you.
+ 	#5.	On the left there are schemas (databases) and on center there's a blank editor. comes with 3 DB 
+ 			by default. (sakilla, test and world.)
+ 	#6.	Each data base contain 4 folders (Views, Stated Procedure, Functions and Tables )
+ 			Tables contains table (like city, country etc.)  
+ 			Each table folder contains (columns, indexes, Foreign keys and Triggers)
+ 			Column contains all the column for e.g. for city > name, Id , countryCode etc. 
+ 	#7.	Now we can use the editor to write queries to you DB and talk to it. 
+ 	
+ 		QUERY:  -- execute either the whole query doc or only the selected query. There's a command for that.
+ 		# creating DB.
+ 		> create database QadbTest; -- it will show green mark one row got affected and DB is successfully created.
+ 		# using that DB
+ 		> use QadbTest;
+ 		> create table EmployeeInfo(sno int, name varChar(20) NOTNULL, id int, location varChar(20), age int); -- i forgot this.
+ 		# how its created and show the outer schema.
+ 		> describe EmployeeInfo; -- i forgot this as well. 
+ 		> Insert into EmployeeInfo(1, 'avinash', 1001, 'india', 21); -- do this until you data is complete.
+ 		> Select * from EmployeeInfo where country = 'india';
+ 		<DO THIS AGAIN>
+ 	
+ ***JDBC***
+ 		First you create a connection and then you create a path called to query.
+ 		you create this path by creating an object of class Statement to query cuz query itself is a Statement.
+ 		
+ 	
+ 
+  EFFECTIVE E.G. :
+  
+  Scenario #1.
+		client A (wants someone to write automation suite for their creditCard banking website/apps)
+		approached consultant B. (There are multiple Scenarios where you have to handle Zero balance account, 
+		login for over due balance,  rewards more than Thousand reward in you card how web-site should look like.)
+		we ask for some dummy accounts to play with but as we add balance or modify the account got wasted its not a 
+		zero balance account now. so again you have to ask for another dummy account. so, every time B is facing login problems
+		and try to approach A for data. so what client A does, A provides a data base to B and allows access to that database which 
+		B can use. ( this database has access to credentials.) Smartly connecting to the database.
+		
+  Scenario #2.
+  
+ ^.^ Go Through Points ^.^
+	> Creating DataBases and Tables.
+	> JDBC Connection with Java programming.
+	>	Selenium/Appium integration on JDBC code.
+	>	Retriving data from Database and executing with Selenium/Appium.
+
+ ********
+ ###PACKAGES TO REMEMBER###
+ 
+		import java.sql.Connection;
+		import java.sql.DriverManager;
+		import java.sql.ResultSet;
+		import java.sql.SQLException;
+		import java.sql.Statement;
+
+ NOTES on Syntax:
+ 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ 		void dbTest() throws SQLException {
+		String host = "localhost";
+		String port = "3306";
+		String dbName = "demo";
+		
+		Connection con = DriverManager.getConnection("jdbc:mysql//"+ host + ":" + port + "/" + dbName,"root", "toor");
+			
+		Statement s = con.createStatement(); //creating an statement object
+		ResultSet rs = s.executeQuery(" Select * from EmployeeInfo where country = 'indiai'; ");
+		rs.next();	
+		while(rs.next()) {			//next method return boolean and shifts the pointer one step.
+			//Error Before start of result set.
+			rs.getString("name");	//column name to get the value
+		}
+		
+		
+ NOTES on Code:
+ 
+	>		//connections url will be of the form jdbc:mysql// + host + : + port + /DBname;
+			// default port :3306 host : localhost.
+			
+	>		// The ResultSet implements a DS such that adding a new element 
+			// it still points to the base index and so to move to first index we need to say.
+			
+	>		//executing the query based on the statement object and the obtained result is 
+			// feeded to ResultSet object and the we are fetching the data into the code to use
+			// the data.
+ *******
+ closure:
+ 	data driven testing can be possible with DB as well and we can use other DB as well 
+ 	rather than MySQL. i need to practice on this thing. 
+ ******** End *******
+ 
+
+
+
+
+
+
+
+
+
+

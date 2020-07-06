@@ -1,0 +1,65 @@
+/*
+ * @topic : JDBC
+ * @definition : (What is JDBC?) 
+ * @tags : <Theory>
+ *
+ * @note:
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+ !1
+ !2
+ !3 
+ !4
+ 
+ ********
+ NOTES:
+ 
+		***Processing*** SQL Statements with JDBC.
+		#1.	Establishing a connection.
+		
+				First, establish a connection with the data source you want to use. A data source can be a DBMS,
+				a legacy file system, or some other source of data with a corresponding JDBC driver. This connection
+				is represented by a connection object.
+				
+				CREATING statements: a statement is an interface that represent a SQL statement. You execute Statement
+				objects, and they generate ResultSet objects, which is a table of data representing a database result set. You
+				need a Connection object to create a Statement object.
+				
+				 For e.g. , CoffeesTable.viewTable creates a Statement object with the following code: 
+				 	stmt = con.createStatement();
+		>> There are 3 types of statements:
+			*	Statement: Used to implement  simple SQL Statements
+				
+		#2.	Create a statement.
+		
+		#3.	Execute the query.
+		#4.	Process the ResultSet object.
+		#5.	Close the connection.
+
+  EFFECTIVE E.G. :
+  
+  Scenario #1.
+  Scenario #1.
+  
+ ^^ Go Through Points ^^
+ >
+ >
+ >
+ >
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+ NOTES on Syntax:
+ 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ NOTES on Code:
+ 
+ *******
+ closure:
+ 
+ ******** End *******
+ 

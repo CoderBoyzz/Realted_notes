@@ -1,0 +1,129 @@
+/*
+ *	Framework 2.0  
+ *	system.properties and Maven/mvnreprository.com.
+ * @tags :	<theory> <practice>
+ *
+ * @note:	What is Effective pom? 
+*/
+
+***********
+//how to Drive the  global Environmental values from external files to Test in Java.
+>for e.g. URLs or timeouts or values general etc.
+> use case:
+		Properties prop  =new Properties();
+		FileInputStream fin = new FileInputStream("C:\\Users\\jmm\\eclipse-workspace\\FrameWork2\\src\\lol\\java\\fw2pk1\\data.properties"); 
+		prop.load(fin);
+		String msg = prop.getProperty("browser");
+		System.out.println(msg);
+		prop.setProperty("browser", "firefox");
+		msg = prop.getProperty("browser");
+		System.out.println(msg);
+		
+		//to write back to the file use file output stream 
+		FileOutputStream fout = new FileOutputStream("C:\\Users\\jmm\\eclipse-workspace\\FrameWork2\\src\\lol\\java\\fw2pk1\\data.properties"); 
+		prop.store(fout, null);
+> code example showing prooperties.
+
+***********
+
+Importance of Maven in Framework development.
+>	Apache Maven is a software project management and build management tool for ***Java FrameWorks***.
+
+#1.	Why Maven? why not Gradle? [common interview question]
+a.>		***central repository*** to get dependencies.
+b.> 		maintaining ***common structure*** across organization.
+c.> 		Flexibility in integrating with CL tools.
+d.> 		Plugins for Test framework execution.
+
+#2.	install Maven.
+#3. 	Set System variables to recognize Maven.
+
+#4. 	understanding Maven terminologies.
+>		Artifact: An artifact is a file, usually a JAR, that gets deployed to Maven Repository.
+> 		GroupId: groupid will identify you project uniquely accross all projects. 
+> 		archType: Generates new project for Archtype.
+
+************
+
+> Scenario if you build a framework jar you will give to anyone and they will configure the path for it as well.
+> imagine 50 people working on project all have to do this. And if the version changes reconfigure every thing from scratch.
+	its a tedious task. 
+> ***Hard Coding*** the JARs is not recommended to do. 
+>  mvnRepository.com contains all the jars that is present for the given framework for any popular software.
+
+>	 Scenerio In a company there are multiple team who work on multiple FW and each team defines the FW docs differently 
+	some them may be some maintain the folders for test data and some team doesn't maintain the folder for test data.
+> structure of maven java app template.
+	my-app
+	|--	pom.xml
+    ` --	src
+    	|--	main
+    	|	`--java
+		|		`--pkg
+		|				`--app.java
+		|
+		|--	test
+			`--java
+				`--pkg
+					`--appTest.java    
+					
+""""""very confusing structure""""	
+
+> for continous integration tools we need Jenkins and use Jenkins to run 100 test cases. so we need to some one to provide some build management 
+ 	data/tools to Jenkins we use Maven. 
+ > We can use all the features of testNG and other in Maven as well using plugins.
+ 
+***********
+
+>	Integrating mvn with eclipse, Understanding POM.xml file dependencies, finding dependencies on software.
+>	Maven Phases for Test Automation. Running SureFire plugin.
+
+***********
+
+> Mvn commands go to cmd prompt and directory of POM.xml file and run the commands as mvn __.
+> mvn clean : cleans the build files for fresh start.
+> mvn compile : compile 100 of test cases and check for any syntax error.
+> mvn test : whenever you run test command it will firstly put clean, compile and then execute test. Read all the dependencies 
+	check if all the dependencies are present in .m2 folder locally or local maven repository.
+	
+	
+>	Maven uses some algorithm to find test by looking at the test at the end of the class name. e.g. SeleniumTest.
+	so syntax is <class-name>+Test.java use this for all of your code modules.
+> With Maven you can even close Eclipse and run tests from command prompt.
+
+***********
+
+> Integrating testNG with Maven.
+>	Triggering testNG.xml using Maven. Using surefire plugins we can run TestNG suite XML file. This allows flexible configuration
+	of the test to run.
+>	read official documents and learn from there.
+> syntax: <cnfigurations></configuration> pom.xml file.
+> mvn -Dtest=testTest test Runs a single test class.
+
+***********
+
+> Smoke Test: Which only run High-level Test cases.
+>	Regression Test: runs all the Test cases.
+> profiling: use profiling to run tests in a different profile basis whether smoke or regression. 
+	<profiles>
+		<profile>
+			<id>smoke</id>
+			<build></build>
+		</profile>
+	</profiles>
+				
+***********
+
+
+
+
+
+
+
+
+
+
+
+
+
+

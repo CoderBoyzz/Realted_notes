@@ -1,0 +1,121 @@
+/*
+*	 Apache Log4j framework 4.
+*	 Log 4j is commonly used in logging purpose. <API-verification> <practice> <issues> <Resolve>
+*/
+
+**********
+>> What is Apache Log4j?
+>	log4j is a reliable, fast and flexible logging framework(APIs) written in Java, which is disabled
+	under the Apache software.
+	
+	WHY Log4j?
+>	Client questions: 
+	
+	Send the entire logs in file?
+	
+	Log only when there is error for Package A. --package A has 30 test and package B has 50 test every test having logs
+	>> 	and the if you want to see only the error logs.
+	log the entire message for Package B.
+	>>	client wants to seen the all tehe logs for verification.
+	I want Logs with TimeStamp
+	>>	what if we want to see when the logs are generated along with the logs. 
+	>>	This way every one can cross check if every thing is up to the synchronization.
+	I want the log file of last week.
+	>>	what if last Friday there was a release and after the release in production errors were caught.
+	>>	but client thought why the error in production isn't displayed in automation.
+	>>	so client might ask ok give me the logs of that day and let me cross check. 
+	How will I know if there is an error by just looking at logs?
+	>>	how to know which error and what error?
+	
+	Answer to every question is Log4J.
+**********
+> Clicked on this Button 
+> Page is successfully loaded. logs in development is a best practice to follow.
+> 
+
+**********
+> what is Log4j?
+> private static final Logger log = LogManager.getLogger(Demo1.class.getName());
+	//getLogger() accepts class name as an argument and Demo.class.getName() gives the path to the class
+	// along with the class Name.
+	
+> 	debug(), info(), error(), fatal() and so on... are the methods present inside LogManager class.
+	LogManager is a class which implements Logger interface and contains method getLogger which gives a 
+	logger object based on the qualified class name provided.
+	
+>	by default we know that log4j runs on default configuration as it only logs error and fatal errors. we need to 
+	change the configuration to get the proper logs.
+	
+> log 4j provide tags based on the type of logs so that all the errors and logs can be seperated with these tags.
+	 and improves visibility.
+>	what was the configuration file any how we can handle the log configuration files?
+	two main tags for log4jconfiguration.xml file one is Appenders tag and another tag is Loggers.
+	  
+	</>where to log? --- <Appenders> <console>
+	</>how to log? -- <PatternLayout pattern = "">
+	</>what to log?  -- <Loggers> <Root level = "error">
+	</>there are two levels of what to log at Root level level = "error" and level = "trace"(prints the entire log). 
+	
+>  The configuration log4j.xml is needed to  put into resource folder on project level and added via configuring 
+	build path. so your class know it when you run your code it looks for configuration file in the project build path
+	and apply those configuration.
+	
+>  ###SYNTAX###
+		<Logger name="test.java.logfourj.alpha.Demo1" level="ERROR"  additivity = "false">
+			<AppenderRef ref="Console"/>
+		</Logger>
+	This code tells the log4j that this target package only have a level of Error and only print error
+	logs and additivity attribute means once in Root all the tests are run and on package level 
+	this test runs again. so inorder to remove the **duplicate LOGS** we need to make additivity equals false.
+	
+> Log4j is not a dependency but a utility.
+
+> Logging into a file you need to modify the appenders tag.
+	###CODE###
+	<Properties >
+		<property name="basepath">.\src\test\java\logs</property>
+	</Properties>
+	
+	<!-- here we added relative path to project and use it as a property to give file path. -->
+	
+	<RollingFile name="File" fileName="${base path}/print.log"
+			filePattern="${base path}/print-%d{yyyy-mm-dd}.log">
+			<PatternLayout
+				pattern="%sn. %d{HH:mm:ss.SSS}  %-5level   ** %msg ** :  (Logger=%logger ) %n" />
+				<SizeBasedTriggeringPolicy size="500"/>
+		</RollingFile> 
+		
+	  here RollingFile is to make another Appender. file in this case. we provided name, filePath and generic 
+	  pattern to create file of same name. (fileName + timestamp + .log). Also defined the pattern for logs 
+	  and used SizeBasedTriggeringPolicy tag to ensure we create new file after we reach a file size of 500kb.
+	
+
+**********
+@ foot NOTES
+:1 use log.Error() to log when the elements are not displayed in the page of if any validation fail.
+:2 use log.Debug() to log when each Selenium action is performed like click, SendKeys() and getText().
+:3 use log.info() to log When operation is successfully completed ex: After loading page, or after any successful validation.
+
+**********
+	###BASIC SYNTAX OF LOG4J2.XML FILE### 
+	<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout>
+				<MarkerPatternSelector
+					defaultPattern="%sn. %d{HH:mm:ss.SSS}  %-5level   ** %msg ** :  (Logger=%logger ) %n">
+					<PatternMatch key="CLASS"
+						pattern="%sn.  %msg: Class=%class%n" />
+				</MarkerPatternSelector>
+			</PatternLayout>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="Error">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>
+
+**********

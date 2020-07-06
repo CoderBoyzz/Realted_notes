@@ -1,0 +1,57 @@
+/*
+*Most important tool for software industry ladies and ledas presenting Framework 
+*Jenkins and sure Fire plugins reports. <Theory> <practice>
+*/
+
+**********
+
+Importance of Jenkins. 
+
+#1.	Jenkins Installation.
+#2.	Configuration Global settings in Jenkins.
+#3.	Understanding Jenkins Workspace.
+#4.	Configuring Jenkins Job parameters.
+#5.	Post build action plugins.
+#6.	TestNG Jenkins plugins to generates Reports.
+#7.	Scheduling Jenkins builds.
+
+**********
+
+> Jenkins is a continous integration tools to automate the daily routine tools
+	and one of the most important in software industry.
+>	Scenario where you have 500 test case with you and you have to trigger them through command.
+	 we need something to automate them as well, we need Jenkins. we need to run all our test cases at 
+	 2 AM daily then your 7 hour test could trigger at the specified time.
+>	In development one will regression job and one will be smoke job.  For non-technical business folks 
+	they just need to know you jenkins Url and see the test runs. Jenkins runs on its own server and it maintains 
+	consistency and runs every time on given setting.
+>	 download jenkins.
+
+**********
+
+> DevOps guys will take care for you and you need not worry about this as they will host jenkins for 
+	particular server. 
+> Maven has an excellent compatiblity with CI tools called Jenkins.
+>	If you want to run you project either use Github or place project in Jenkins home directory.
+>	When you create Jenkins Job either you give Source code Management. 
+
+>	after creating a new Job for Maven and setting up.
+>	Invoke top-level Maven targets
+	Maven version: apache-maven-x.x.x
+	Goals: 	clean
+				compile
+				test -Pprofile1
+	
+	you can skip the mvn in syntax.
+ 
+**********
+> Test NG reports are provided by sure-fire plugin which gives an index.hrml code.
+> so TestNG provides a plugin which can give test reports using Jenkins using testing results 
+	xml file in test-output of maven sure-fire.
+>	go to workspace > configure > post_build-Action as you need to generate the report after the test is complete
+> build periodically is set using M H Month Day DayOfWeek
+	hence, 0 7 * * * is run every day at 7 AM.
+	<Theory> jenkins Scheduling Jenkins Job for specific time.
+> Smoke regression people can see it.
+
+**********
