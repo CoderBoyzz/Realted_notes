@@ -1,0 +1,111 @@
+/*
+ * @topic : jasmine framework
+ * @definition : Jasmine is a behavior-driven development framework for testing 
+ * 				JavaScript code. It does not depend on any other JavaScript frameworks. 
+ * 				It does not require a DOM.
+ * @tags :	<THEORY> <PRACTICE>
+ *
+ * @note: Every Spec in Jasmine should define Describe and it blocks. 
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+ !1	Two terminologies "Describe" and "it".
+ 	In lamen terms **Describe** defines test suite. Test suite (A folder where all the
+ 	the test folder which holds all the related test cases in it.)
+ 	**It** here stands for JavaScript test cases which lies inside a test suite. A javaScript test file
+ 	is called Spec(As per the jasmine terminology) but is test file.  
+ 	
+ !2 you will  run testcase from Spec level and like you can do with java and testNG but what you 
+ 	can do but what you can do is write an Configuration file.
+ 	 
+ !3 configuration file can run by setting a new run configuration in eclipse and then giving path to
+  	protractor main file (cli.js) 
+ 
+ ********
+ NOTES:
+ 	So the Acutal heirarchy is one Describe(Test suite/test folder) contains all Spec(test files)
+ 	and the spec contain all the It(test cases). but real implementation is little different from 
+ 	this.
+ 	
+ 	Test Runner in JavaScript(Protractor):
+ 	
+ 
+  EFFECTIVE E.G. :
+  
+  Scenario #1.
+  	>	suppose you have 6 spec files you can include all the names of all the sepc files 
+  		into the Configuration file and run your test cases from there. Just like TestNG
+  		have testng.xml file.	
+  Scenario #1.
+  
+ ^^ Go Through Points ^^
+ >
+ >
+ >
+ >
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	
+ 	describe("this is a test suite", function() {
+ 		var a;
+ 		
+ 		it("", function() {
+ 			a = true;
+ 			
+ 			expected(a).toBe(true);
+ 		});
+ 	});
+ 	
+ 	>>>Syntax of conf.js:
+ 	
+ 	exports.config = {
+	seleniumAddress: 'htttp://localhost:4444/wd/hub',
+	specs: ['WebContent/spec1.js'], //specs or test files
+};
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Syntax:
+ 
+ 	//describe function is a test suite here takes two arguments
+ 	(one is the massage or name of test suite(Stirng) and second argument it takes 
+ 	is the function() which describes all the test cases in it blocks.)
+ 	
+ 	//spec runs all the test files and those test files needs to be executed by running
+ 	the conf.js file using some sort of test runner.
+ 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	
+ 	describe("Protractor test suite", function(){
+	var a;
+	
+	it("Open Angular js website", function() {
+		browser.get("https://angularJS.org");
+		
+		element(by.node1("todolist.toDoList")).sendkeys("Written something using Protractor automation");
+		
+		// what ever code you write you write it here. 
+	});
+	
+	it("payment in angular website", function() {
+		
+		// another test case.
+	})
+	});
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Code:
+ 
+ 
+ *******
+ closure:
+ 
+ ******** End *******
+ 

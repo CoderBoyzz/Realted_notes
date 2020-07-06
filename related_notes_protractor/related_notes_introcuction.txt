@@ -1,0 +1,113 @@
+/*
+ * @topic : What is Protractor?
+ * @definition : Protractor is an end-to-end test framework for Angular and AngularJS
+ *             application. generally, (WebDriver + Angular Support = Protractor.)
+ * @tags :  <theory> <practice>
+ *
+ * @note:  Disclaimer: but Protractor makes your life easy. 
+ * 			If something changes in the future you should be ready. So, make a habit of reading the 
+ * 			official websites.
+ * 			To know the version of node-module type : "node-module --version"
+ * 			If you see tests are failing in protractor is failing after latest release 
+ * 			then you should updata the webdriver-manager by typing: "webdriver-manager update"
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+
+ !1	Why Protractor? 
+	-The only stable framework to Automate Angular Apps. It is developed and maintained by Angular Team.
+	***Selenium*** is still king but for Angular Apps Protractor takes the edge. For all the cutting edge 
+	Technologies like React.js, Angular.js and Vue.js for all of this ***Protractor*** is very stable.
+	and is by default supports all the angular apps as developed by the same devs.
+
+ !2	What language does Protractor Support?
+	-Protractor is a Node.js program built on top of WebDriverJS. So it uses JavaScript as core language 
+	to develop tests. So, core Protractor is Selenium WebDriver for JS and top of it they used some wrapper 
+	classes to support angular apps. And as with selenium those wrapper classes are not compulsory but then it
+	would take alot of years to get through simple things which could be done in minutes. That's why you use 
+	JavaScript(TypeScript is optional) as the core language to make Protractor applications.
+
+ !3 Why Protractor have huge demand in the market?
+	-I do not have JavaScript knowledege. Can I follow this Tutorial? Absolutely. Everthing from Scratch.
+
+ !4	Even if your Application becomes non Angular somehow even then Protractor supports non-angular Apps
+	As well. 
+
+ !5 What are the tools/languages are used to automate angualar Apps?
+	-Node.js, Jasmine, JavaScript and Protractor API.
+ 
+ ********
+ NOTES: 
+	Selenium WebDriver can be used to automate Angualar Apps but there are some Angualar features
+	Which may or may not be handled by WebDriver. Or WebDriver is little inconsistent with little core
+	features of Angular Application. 
+	Also, somehow to make those features work you need to do alot of coding using selenium WebDriver.
+
+	WHAT IS JASMINE?
+	Jasmine is unit testing framework for e.g. In Selenium you might have come accross the unit testing 
+	Frameworks like TestNG. Junit. Its same but for JavaScript/Protractor.
+	Jasmine is an open-source testing framework for JavaScript. It aims to run on any JavaScript-enabled 
+	platform, to not intrude on the application nor the IDE, and to have easy-to-read syntax.
+ 
+  EFFECTIVE E.G. :
+  
+ ^^ Go Through Points ^^
+ >  Understand the importance of Protractor.
+ >  Learn Protractor (Angular Automation Tool) from Scratch.
+ >	JavaScript(TypeScript is optional) as the core language to make Protractor applications.
+ >	Demand of Protractor is increasing cuz the use of frameworks like angualr.js and vue.js are Also 
+	increasing.
+ ********
+ ### DIFFERENCE BETWEEN TYPESCRIPT AND JAVASCRIPT ###
+ 1. TypeScript is not a new language.
+ 2. it is superset of JavaScript.
+ 3. JavaScript + Few Additional features (OOPS)	= TypeScript.
+ 4. No matter you use JS or TS, Protractor API Remains same in syntaxes and is originally 
+	built in JS. Differences arises in syntaxs when building the Test framework for Protractor.
+ 5. 2 different Framework Jasmine(JavaScript) and Cuccumber(TypeScript).
+ 
+ NOTES on The Differences:
+ > 	oops concept in JS is fairly new and brought in during ES5 release.]
+ >	But the concept of oops are still lacking in JS which are more visible in TypeScript.
+ > 	The Protractor API syntax is same for TS and JS. For e.g. clicking a button or sending 
+	the keys all are same for TS and JS.
+ >	When you start building a framework then you are going to see alot of changes in TS and JS.
+	for e.g. when you use PO pattern to drive data from one page to another page.
+ >	
+ 
+ *******
+ ### NOTES ON NODE.JS ###
+ 
+	Q. What Node.js? 
+	A. chorme v8 js engine topped with c++.
+
+	Q. What is npm?
+	A. npm stands for node package manager. It is used to install software which are
+		available in node repository. Protractor is hosted in node repository.
+
+	Points: you will need Selenium-server to connect your protractor test cases to your 
+	actual browser. Its basically like selenuim Grid or appium. 
+
+	The server needs to be started in order to start any testing with protractor. Your protractor
+	code will send a request to the server which control your local browser accordingly. 
+
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+
+	 Server can be started by typing: "webdriver-manager start"
+
+	 Server will start with in port no. localhost:4444/
+
+	 Output:		
+ 	 01:04:06.875 INFO [SeleniumServer.boot] - Selenium Server is up and running on port 4444
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Synatax:
+ 
+ 
+ *******
+ closure:
+ 
+ ******** End *******
+ 

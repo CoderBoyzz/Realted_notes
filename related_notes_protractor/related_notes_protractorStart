@@ -1,0 +1,72 @@
+/*
+ * @topic : running Protractor tool and concept of Asynchoronous JavaScript.
+ * @definition : 
+ * @tags : <Theory> <practice>
+ *
+ * @note: Everything is easy when protractor is easy. There is one more concept called promise.
+ 		after learning it everything is cake walk for protractor.
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+  
+ !1	JavaScript is Asynchoronous.
+ !2 In JavaScript everything runs on different thread except our code.
+ !3 
+ !4
+ 
+ ********
+ NOTES:
+	Java, python are Synchronous but JS is Asynchoronous in nature. Which brings problems while automating the 
+	websites. order of execution can not be predicted before hand. 
+
+	Q. 	How to solve The issue of Asynchoronous JavaScript?
+	A.	As you know the webdriver js is also Asynchoronous as its built on top of JavaScript.
+		This maps from JavaScript to webdriverJS and from webdriverJS to Protractor. 
+	
+	Q. 	How JavaScript Asynchoronous and single threaded?
+	A. 	Asynchoronous programming is one of those programming paradigms that's extremely difficult 
+		fully understand until you practice. concept of async programming, and where its different 
+		from parallel programming, in the context of JS.
+
+
+  EFFECTIVE E.G. :
+  
+  Scenario #1.
+		so JavaScript should run everything in order. if we want to open a link and then click. Then 
+		ordering is important. we cannot expect anything else. This is what we generally say that this 
+		is Asynchoronous and when sequence is missing during execution.
+
+  Scenario #1.
+  
+ ^^ Go Through Points ^^
+ >
+ >
+ >
+ >
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Syntax:
+ 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Code:
+ 
+ 
+ *******
+ closure:
+ 
+ ******** End *******
+ 
