@@ -1,0 +1,83 @@
+
+ @TOPIC:	SLAM-R Algorithm of Simultanous Localization and Mapping using RFID for Obstacle 
+ 			and Recognition.
+
+ @PREFACE:	This paper presents an algorithm of simultanous localization and mapping (SLAM)
+ 			with a scanning laser range finder and radiofrequency identification technology
+ 			(RFID) to include landmarks of an object or place within a generated map. For the 
+ 			testing phase was used of simulation software Anykode's Marilou and was used to build 
+ 			a virtual Mobile robot with the features of the Pionner 3-AT, including a Hakuyo URG-04X
+ 			scanning laser finder and an innovations RFID ID-12 reader. Validation of results was 
+ 			carried out with the cycle closure process to obtain the average error of the navigation 
+ 			path, resulting on an error of less than 50mm.
+
+ VVVVVVVVVVVVVVVVVVVV starts here VVVVVVVVVVVVVVVVVV
+
+  POINTS TO NOTE: 
+
+	1. Introduction:
+			For decades, researh has focused on attempting to simulte common human actions like 
+			walking, running, talking and even thinking. One of the qualities of humans that has 
+			gathered the most attention from scientists is their ability to move around in difference
+			settings, making researcher focus on navigation techniques that transfer this ability to 
+			artificial entities. In 1986, Peter Cheeseman, Jim Crowley and Hugh Durrant-Whyte talked 
+			about the topic of simultanous localization and mapping applying probability SLAM, during 
+			IEEE robotic conference.
+
+			The creation of SLAM resulted in various research the tried to determine which action would 
+			be carried out first, localization and mapping. Multiple algorithms allowing for the simultanous
+			navigation and localization (SLAM) of mobile robots have been developed since then, both are
+			indoor and outdoor environments. 
+
+			The creation of SLAM resulted in various research that tried to determine which action would be 
+			carried out first, localization or mapping. Multiple algorithms allowing for simultanous navigation
+			and localization (SLAM) of mobile robots habe been developed since then, both for indoor and outdoor
+			environments.
+
+	2.	Algorithms: 
+			Algorithm ***GMapping*** is a particle filter-based online algorithm wiht Rao-Blackwellization 
+			proposing the distribution of probabilities that consider the last measure taken by the laser 
+			device, and not just **odometry**. This is done by searching the region closer to the estimated
+			location. defining the probability of each landmark associated to the measure and adding the 
+			odometry information; from this, K samples are extracted to estimate a Guassian distribution
+			matching the mean and variance wiht the estimated distribution. The particle's new position is
+			obtained form teh resulting distribution. Before resampling, a measure inversely proportional 
+			to the variance of particle's estimations is calculated to assess the need of resampling. This 
+			algorithm from intel, Freiburg and MIT, with good results, generating maps without inconsistencies 
+			for eahc tested data, including analysis form different researchers. One of the setbacks of the 
+			algorithm is dynamic objects, as well as objects with complex modeling grass, wires etc.
+
+			The **Kalman** filter-based algorithm **CEKF-SLA** maps using environment features: it also optimizes 
+			algorithm EKF-SLAM by using a compressed filter, which delays updates of convarience[meaning],
+			associated to a set of non-local labels. This increases the algorithm's efficiency without 
+			diminishing the accuracy that characterizes full SLAM algorithms. This algorithms was tested 
+			outdoors using a car with encoders and a laser telemeter that followed a path during 20minutes.
+			Results were favorable and demonstrated the optimization of the original algorithm: however, the 
+			problem of cycle closure in maps still persists.
+
+
+
+
+	3.
+	4.
+	5.
+	6.
+
+
+ *******
+ ### EFFECTIVE EXAMPLES/SCENARIOS ###
+	 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+	...SCENARIO #1...
+
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+	...SCENARIO #2..
+
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ *******
+ closure:
+ 
+  VVVVVVVVVVVVVVVVVVVV ends here VVVVVVVVVVVVVVVVVV
+
+ 

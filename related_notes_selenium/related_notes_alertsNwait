@@ -1,0 +1,91 @@
+/*
+ * @topic : Handling Alerts in Selenium.
+ * @definition : Alerts are browser generated massages regarding a notification or conformation.
+ * @tags :	<theory> <practice>
+ *
+ * @note:	Two types of Alerts exist in web browsers. Generally three types also there exist 
+ * 			a crediential validation alert but its different from any of these and require 
+ *			more thechniques.
+ */
+ ********
+  Points to remember: 
+
+ A.	These are not present in page source as these are browser generated.
+ B.	Handling using function void switchTo() in order to switch the context
+	from webpage to browser alert().
+ C. Handling credential validation alert/ Window Authentication Pop-ups. 
+	its difficult because its uses credentials and none of the Selenium methods
+	provide credentials to the browser alert.
+
+
+ ********
+ NOTES:
+	> 	various methods can be used, but in general "WebElement driver.switchTo().alert()" 
+		like "driver.switchTo().alert().getText();" returns text from alert box.
+		"driver.switchTo().alert().accept();" returns click to positive acknowledgement.
+		"driver.switchTo().alert().dissmiss();" returns click to negetive acknowledgement.
+	
+	>	Handling Window Authentication pop-ups.
+		"https://username:password@SiteUrl" sending this as a url gives alerts the necessary
+		details to the alert about to pop-up.
+	
+	>	"https://herokup.com/" is a best websites.
+
+	>	 Another approach is to use Widow automation tools like AutoIT.
+ 
+ &&&&&&&&&&&&&&&&&&&&&&&&&	H A N D L I N G ---- W E B E L E M E N T S &&&&&&&&&&&&&&&&&&&&&&
+
+ /*
+ * @topic : Hanlding webelements of an ecommerce website.
+ * @definition : 
+ * @tags :
+ *
+ * @note:
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+ !1
+ !2
+ !3 
+ !4
+ 
+ ********
+ NOTES:
+ 
+  EFFECTIVE E.G. :
+  
+  Scenario #1.
+  Scenario #1.
+  
+ ^^ Go Through Points ^^
+ >
+ >
+ >
+ >
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Syntax:
+ 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Code:
+ 
+ 
+ *******
+ closure:
+ 
+ ******** End *******
+ 

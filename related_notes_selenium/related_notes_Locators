@@ -1,0 +1,110 @@
+/*
+ * @topic : Locators 
+ * @definition : Locators are of various kinds like name, id, className, linkText
+ * 				 xpath and css Selector. locators helps Selenium IDE to find which 
+ * 				 GUI elements (say textbox, buttons, checkbox, dropdowns etc.) 
+ *				 are to be triggered for automation.
+ * @tags :	<practice> 
+ *
+ * @note:	> tips to remember:
+ * 		* void driver.quit() quits all the parent and child windows similar to 
+ * 		  driver.close() method which closes the current driver instance.
+ *		* xpath and css can be difined in n no. of ways.
+ *		* Tool firePath was once used in firefox and now we are using chropath in 
+ * 		  Chrome browser.
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+  
+ I>		[xpath and css selector] are most commonly used locators in Selenium.
+ II>	Validation of Xpath and css can be done in any browser using JS-console.
+ III>	Css is way more faster than XPath but xpath is way more flexible than Css.
+ IV>	XPath has wider veriety of Axes which allows **backward traversal**.
+ V>		Xpath cannot have **compund classes** as Loacator. <pracitce>
+ VI>	Css can have **compund classes** as Locators.
+ VII>	Css have have regualr expression for parent-child, nth-child Axes.
+ VIII>	XPath can have sibling relation as well.
+ IX>
+ X>
+ 
+ ********
+ NOTES:
+	xpath and css allows parent child relation. Which means xpath of Ancestor can be traversed 
+	to get to the desired node.
+
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	//syntax for validating locators is 
+
+	$x("//xpath"); //to validate xpath if its valid or not.
+	$("css");		//to validate css in other browser.
+	$$("css"); 	//to validate css in chorme browser.
+
+	//syntax for xpath.
+	
+	.//Tagname[@attribute = 'value']			//normal relative xpath initiatied with dot.
+	//Tagname[@attribute = 'value']				//normal relative xpath.
+	//*[@attribute = 'value']					//relative xpath without Tagname.
+	//Tagname[contains(@attribute, 'value')]	//regular expression.
+	//*[contains(@attribute, 'value')]			//regular expression without Tagname.
+
+	//syntax for xpath.
+
+	Tagname[@attribute = 'value']		//normal css.
+	[@attribute = 'value']				//relative css without Tagname.
+	Tagname[@attribute *= 'value']		//regular expression.
+	[@attribute *= 'value']				//regular expression without Tagname.
+	Tagname#id_value or #id_value		//css short syntax for fixed id.
+	Tagname.class_name or .class_name	//css short syntax for fixed class.
+	
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//parent child relation ship.
+
+	 <div class = "class1" id = "textbox1">
+	 	<input type = "text" />
+	 </div>
+
+	 XPATH	: $x(".//div[@class='class1']/input");	//xpath to trigger input element.
+
+	 CSS	: $("div[class='class1'] input[type='text']);	//css to trigger input element.
+	 		: $("div#textbox1 input:nth-child(1)");			//css to for same using nth-child 
+				//nth-child relation.
+	 		: $("id*='box1' input[type*='text']"); 			//css to trigger input element using 
+				//regular expression.
+	 
+	 <div class = "class1 class2 class3" id = "textbox1">
+	 	<input type = "text" />
+	 </div>	
+	
+	 CSS 	: $("div.class1.class2.class3"); 		//css syntax for compound classes.
+	 		: $("div[class*='class2');				//css syntax for compund classes using regular expression.
+	
+
+	 <div class = "class1 class2">
+	 	<input type = "text"/>
+	 </div>
+	  <div class = "class1 class2 class3">
+	 	<input type = "text" />
+	 </div>
+	 
+	 XPath	: $x("(.//input[@type='text'])[1]"); 	//trigger second textbox using xpath indexing.
+
+
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ 
+ *******
+ closure:
+ 
+ ******** End *******
+ 

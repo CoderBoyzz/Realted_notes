@@ -101,11 +101,11 @@
 	});
  	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
  
- NOTES on Code:
- 
- 
  *******
- closure:
+ closure: 
+	This is a framework that works exactly as TestNG or junit in java. It makes 
+	test cases folders and runs those test cases using a test suit called a configuration
+	file.
  
  ******** End *******
  

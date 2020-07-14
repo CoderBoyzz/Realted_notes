@@ -1,0 +1,166 @@
+/*
+ * @topic : Handling mouse interaction, Windows and alerts using Protractor.
+ *          Concept of frames and Handling frames.
+ * @detail : Handling Mouse interaction using Actions and Windows(concept of parent-child window, window handles and 
+ *					window works).
+ * @tags : <urls> posse.com and upwork </urls>
+ *			<!--upwork does not work the way and blocks robotic automation-->
+ * 		    <question in code>
+ *
+ * @note:
+ */
+ 
+ VVVVVVVVVVVVVVVVVVVV starts here VVVVVVVVVVVVVVVVVV
+
+  POINTS TO NOTE: 
+
+	1. Auto-suggestive drop-downs: 
+			auto-suggestive drop downs(option popultion based on keyword) sometimes doesn't require
+			any effort to automate due absence of more than one suggestion and sometimes hard as 
+			they donot allow flexible automation so, we need apply clever strategy to automate that.
+			you need to either move you mouse down or click mouse. 
+			
+	2.	webdriver.WebDriver.actions and Protractor API:
+			webdriver.WebDriver.prototype.actions is an JS object. Creates a sequence of user actions 
+			using this driver. The sequence will not be scheduled for execution until 
+			webdriver.ActionSequence's perform() is called.
+
+			note: Mouse actions do not work on Chrome with the HTML5 Drag and Drop API. 
+
+	3. Handling Windows and Concept of child window:
+            when a window opens another window that Opened window is called child window and the main
+            window is called child window. When a new child window opens it opens in a new tab. The problem
+            is the control doesnot change with window and it still resides in parent window. makes sense other 
+            wise it will be blunder and incosistency. But the problem now is that this confuses webdriver as 
+            to how resolve scope to target child windows. And the solution is simple but require work, just 
+            shift the control(swithch the focus) to the new window and bada-bam bada-boom the scope of
+            webdriver now increased to new window allowing to control elements on new window. 
+            use the method "switchTo()" e.g. browser.switchTo().window(<window Name or Window Handle>);
+
+            Concept of Window Handles: 
+            Each window opened has either a window name and window handle. which uniqely identifies 
+            a given window. These window handles can be retrived by using 
+            method : "browser.getAllWindowHandles();"
+            definition : 'webdriver.WebDriver.prototype.getAllWindowHandles();
+            return : Schedules a command to get the current list of available windows. 
+
+	4. Handling Alerts: 
+			In pure Angular websites you will never find alerts. 
+            "QUOTE">>>
+            But, in partial Angular and Html websites you  might see them 
+            <<<"UNQUOTE"
+            Now, how to handle them? 
+			Alerts are browser based confirmations which do not belong to html Pages or websites
+			i.e. why they are differently handled. These are browser based pop-ups.
+
+            To Handle these alerts we need to give methods like "browser.swtichTo().alert().accept();"
+            for postive hadling and "browser.swtichTo().alert().dismiss();" for negetive handling.
+
+
+	5.  Handling Non-Angular websites are handled using browser.waitForAngularEnabled(false);
+        This methods set the timeout to 0 by disabling to wait for Angular components and file.
+
+    6. Frames and concept of frames:
+            When a webpage is embedded in another webpage and when a developer wants to do 
+            that then he uses whats called a concept of frames.
+            its done using <frames> and <iframes> tags in html.
+
+            
+
+ *******
+ ### EFFECTIVE EXAMPLES/SCENARIOS ###
+	 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+	...SCENARIO #1...
+
+        suppose we want to switch to a child window we first need to retrive the
+        all the window handles and as we are retriving we will resolve promise as well.
+
+            browser.getAllWindowHandles().then(function(handles) {
+                browser.switchTo().window(handles[1]);
+                browser.getTittle().then(function(tittle){
+                    console.log('get The tittle ' + tittle );
+                }); //get child window tittle.
+            });
+
+        now, instead of using each() to iterate through Array<String>() we will use then() and 
+        index to get one we desire. 
+
+        QQuestion is how much promise resolution is necessary and how much failure can be expected
+        due to improper promise resolution? And how much easy can programmer go?
+
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+     
+        Currently in day-day life you won't see 2 topics that much.
+        1.  alerts you won't see any alerts in Angular apps for sure. but for legecy Java based 
+            apps you will see alerts being used. You are rarely gonna find in latest websites.
+        
+        2.  
+        
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ *******
+ ### REALTED SYTAX/CODES ###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		//automating posse.com
+
+		        browser.get('https://posse.com');
+
+        element(by.model('userInputQuery')).sendKeys('river');
+        browser.actions().mouseMove(element(by.model('location query')).sendKeys('anything')).perform(); //[1]
+        
+        var count = 0;
+
+        browser.actions.sendKeys(protractor.key.ARROW_DOWN).perform();  //[2]
+        browser.actions.sendKeys(protractor.key.ENTER).perform().then(function() {
+            browser.sleep(); //Q!!!
+
+            element.all(by.css('div[ng-mousever*="onSearchResultOver"]')).each(function(webelement) {//Q!!
+                count++;
+            });
+
+            element.all(by.css('div[ng-mousever*="onSearchResultOver"]')).get(0).then(function(webelement) {
+                webelement.click(); 
+                webelement(by.css('a[ng-href*="place/GB/London"]')).click(); //Q!!!
+            });
+
+        });
+
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Code:
+ 
+ 		//[1] moves the mouse to the area which Webelement is given as parameter.
+        //this means in that move the mosue to the particular area.
+        //the action sequence is build an executed using method called perform() at the end.
+        //Q. actions doesn't makes any sense if we are not using any mouse why are we moving mouse
+        //to the element we sent the keys? does this move mouse has some thing like click we will never
+        //know?
+
+        //[2] actions object can sendKeys as well as perform mouse interaction idependent 
+        // of the element its targeting.
+
+        //[3] we need to use all() method. so, We have two option either use chain locator
+        //resolve scope and use tagName ar use some common attribute value.
+        //as the tag name is div and <div> is very common tag hence we will use ng-mouseOver
+        //attribute.
+
+        //Q. Is promise resolution really necessary? do we need to think that it kind of look like we are
+        //retriving value from the browser and iterating?
+        //Q. is browser.sleep() necessary here also does angylar doesn't support the visiblity 
+        //of the elements and wait for them? well it makes sense how would angular know what comes 
+        //next. so it basically means we need to deal with the interPage and interCode Synchronization
+        //at the same time. But, it seems like with in a page it wait implicitly but when page changes 
+        //it doesnot know about elements.
+        //Q. i don't know if webelement(by.css('')) is gonna work we will try though.
+        //Q. browser.sleep() won't work if we will do something.
+ 
+ *******
+ closure:
+ 
+  VVVVVVVVVVVVVVVVVVVV ends here VVVVVVVVVVVVVVVVVV
+
+ 

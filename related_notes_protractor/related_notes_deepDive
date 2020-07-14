@@ -1,0 +1,190 @@
+/*
+ * @topic : Chain Locators, list of elements and handling dropdowns for 
+			Angular web application.
+ * @definition : About repeater, chain Locators and css for identical tags.
+ * @tags : <practice> <theory> regarding concept of promise and how thread work for protractor. 
+ * 			and how they help in then() and each() functions. API understanding of protractor.
+ *
+ * @note: rahulShettyAcademy.com actually can be used for protractor automation by angular automation.
+ */
+ 
+ VVVVVVVVVVVVVVVVVVVV starts here VVVVVVVVVVVVVVVVVV
+
+  POINTS TO NOTE: 
+
+	1. Repeater: 
+			find elements inside an ng-repeat Locator strategy. like "<table ng-repeat='result in memory'".
+			This Locator strategy is exclusive to protractor. 
+
+	2. Chain Locator:
+			Just like xpath Axes and parent child objects and Seleniuim scope resolution in frames or anything
+			like that. Protractor uses something called Chain Locators where chaining the element() mehtod they 
+			create a parent child relationship and helps in locating probably duplicate elements and what not.
+			First, element() method limits the socpe of chlid elements to its ancestor elements which rejects any 
+			further duplication amnd mismatch in finding the unique locators.
+
+	3. Getting List of Elements: 
+			all() method and concept of tagName() Locator strategy. Its basically a rip-off of findElements() 
+			method in Selenium. 
+
+	4. Promise Resolution:
+			Promise resolution needs then() or each() methods to handle the promise. then() method inside then()
+			catches returned value as an parameter. each() method not only returns webElement as an argument but also 
+			iterate the inner block the no. of elemets present inside the array. gernerally the array of WebElements
+			which is retrived using all() method. It doesn't needs all those hasNext() or Iterator.next() like in Selenium
+			Java needs. **Inshort, each() method returns the array<WebElement>, iterates and  increment all at once
+			along with maintaing Synchronization. unlike Java-Selenium**.
+ 
+ ^.^ GO THOROUGH POINTS ^.^
+	=> function definition should be outside it() blocks and inside describe() block. 
+		as a reusable function should be accessible to every it() block.
+		
+	=>	tagName() is a Locator strategy which is used to get the tagName of an element. 
+		can be helpful in situations where list of elements have nothing in common except
+		tagName. instead of using tagName:nth-child(index) which is static by nature.
+	
+	=>	Cascaded promise resolution is it necessary or not needs to investigated.
+
+	=> getAttribute() is a method which is used for retriving value of a particular attribute.
+
+	=> Objects like element/element(), all() are very dynamic by default,And with JS they become furious
+		be careful of these while using them.
+
+
+ *******
+ ### EFFECTIVE EXAMPLES/SCENARIOS ###
+  
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		...SCENARIO #1...
+	 	problems with promise resolution and concept of cascaded promise resolution.
+
+         element.all(by.tagName('option')).each(function(option) {
+            option.getAttribute('value').then(function(value) {
+                if(value === 'ADDITION') {
+                    option.click();
+                    console.log(value);
+                }
+            }); //this is going to work.
+
+            var value = option.getAttribute('value');
+            if(value === 'ADDITION') {
+                option.click();
+            } //this is not going to work as condition is a JS thing and will be asynchornous.
+
+
+        
+
+            if(option.getAttribute('value') === 'ADDITION') {
+                //this could potentially work but is not clean and limits upto this one condition
+                console.log(options.getAttribute());
+            }
+        });
+
+		>> The concept is protractor wont work great with JS codes and protractor codes need js to 
+		work with. They introduce alot of things like each() and then() to handle Synchronization
+		but the problem is that Generally one JS syntax per one promise relove is what it look like.
+		so, this needs to be checked manually before-hand to get the things correctly.
+
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+	 	...SCENARIO #2...
+
+		In real time you won't require codes like:
+
+		element.all(by.repeater('results in memory')).first().element(by.css('td:nth-child'));
+		//for targeting first element in all the locators from all() method.
+		//and use element.all().last(); for last elements. 
+
+        element.all(by.repeater('results in memory')).get(<index>).element(by.css('td:nth-child'));
+        //for targeting specific element in list of locators based on index. 
+		//as we are not iterating explicitly like Selenium and everthing happens implicitly
+		//hence, we don't need this that much.
+
+        element.all(by.repeater('results in memory')).first().all(by.css('td:nth-child'));
+		//this could potentially works in real-time projects.
+
+		element.all(by.repeater('result in memory')).each(function(item) {
+            item(by.repeater('td:nth-child(3)')).then(function(result) {
+                console.log(result);
+            });
+        });
+		//this is going to be used in real-time.
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ 
+ *******
+ ### REALTED SYTAX/CODES ###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//syntax of Chian locators
+
+	element(by.repeater("reslult in memory")).element(by.css("td:nth-child(2)"));
+
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	describe('Describing the chain Locator', () => {
+    it('deep dive', () => {
+        browser.get('angular webiste.');
+
+        element(by.repeater("reslult in memory")).element(by.css("td:nth-child(2)"));	//[1]
+       
+        var result = element(by.repeater("reslult in memory")).
+        element(by.css("td:nth-child(2)")).
+        getText().then(function() {
+            console.log(result);
+        });
+
+        element(by.repeater("reslult in memory")).	//[2]
+        element(by.css("td:nth-child(2)")).
+        getText().then(function(result) {
+            //here result is caught by result argument.
+            console.log(result);
+        });
+
+
+        element(by.model("operators")).click();		//[3]
+        element(by.model("operators")).element(by.css("options[value='ADDITION']")).click();
+
+        
+    });
+});
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Syntax:
+
+ NOTES on Code:
+	[1]	//clicks on the second td element in table tag.
+        //if you want to get the text you getText() method.
+        //and also you want to print result.
+
+
+	[2]	//you can implicitly use funtion itself in then method.
+
+    [3] /*
+        <select ng-model="operators" class="span1 ng-valid ng-valid-parse ng-touched"> 
+            <option value="ADDITION" selected="selected"></option>
+            <option value="SUBTRACTION" ></option>
+            <option value="MULTIPLICATION" ></option>
+            <option value="DIVISION" ></option>
+        </select> 
+        */
+        
+ 
+ *******
+ closure:
+		>>>this should work if done correctly or may be.<<<
+
+        var elements = element(by.model('operator')).all(by.tagname('option'));
+        for(var i = 0; i < elements.count(); i++) {
+            elements.get(i).then(function(option){
+                if(option.getText() === operator) {
+                    option.click();
+                }
+            });
+        }
+
+		this looks like a general programming syntax in a Synchronous language...
+		If JS would have been like that, we need not have to use porotractor...
+		still this could work...
+
+VVVVVVVVVVVVVVVVVVVV ends here VVVVVVVVVVVVVVVVVV
+
+ 

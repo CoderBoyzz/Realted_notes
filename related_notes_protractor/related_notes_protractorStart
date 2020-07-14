@@ -1,6 +1,8 @@
 /*
  * @topic : running Protractor tool and concept of Asynchoronous JavaScript.
- * @definition : 
+ * @definition : Asynchoronous JS is due to the fact that internal threading
+				 concept of js and its implementation is so good that js is a
+				 standard language for browsers and Web.
  * @tags : <Theory> <practice>
  *
  * @note: Everything is easy when protractor is easy. There is one more concept called promise.
@@ -12,15 +14,28 @@
   
  !1	JavaScript is Asynchoronous.
  !2 In JavaScript everything runs on different thread except our code.
- !3 
- !4
+ !3 Every JavaScript step returns a promise. Promise is nothing but state of the step
+	or the line of code. 
+	Three types of promise:
+	a. pending.
+	b. resolved.
+	c. rejected.
+
+	so, in Synchronous programming paradigm every step which is pending doesn't proceedes to 
+	next step until its resolved. But, in Asynchoronous programming pending steps can be 
+	resolved later point of time. Or, even simultanously. Rejection in Synchronous means 
+	Exceptions which are unforeseen while writing the steps. 
+
+ !4	This is the main reason why people prefer webdriver Java instead of webdriverJS.
+	So, While designing Protractor API they said 90% of protractor API is the promise 
+	will not allow step to proceed until its resolved or Rejected.
  
  ********
  NOTES:
 	Java, python are Synchronous but JS is Asynchoronous in nature. Which brings problems while automating the 
 	websites. order of execution can not be predicted before hand. 
 
-	Q. 	How to solve The issue of Asynchoronous JavaScript?
+	Q. 	What is the issue of Asynchoronous JavaScript?
 	A.	As you know the webdriver js is also Asynchoronous as its built on top of JavaScript.
 		This maps from JavaScript to webdriverJS and from webdriverJS to Protractor. 
 	
@@ -28,6 +43,13 @@
 	A. 	Asynchoronous programming is one of those programming paradigms that's extremely difficult 
 		fully understand until you practice. concept of async programming, and where its different 
 		from parallel programming, in the context of JS.
+
+	Q. What are the protractor steps that do not handle promise?
+	A. Methods which are pretty straight forward and common are not used like sendkeys(), element() and 
+	   	click() etc.definately follow the synchroization. So, protractor tells that when you perform any operation 
+		on browser then its Synchronous. but, if you retrive anything from browser then the functionallity 
+		related methods have no support for Synchronous execution.
+		e.g. getTittle(), getText() and etc. 
 
 
   EFFECTIVE E.G. :
@@ -37,36 +59,62 @@
 		ordering is important. we cannot expect anything else. This is what we generally say that this 
 		is Asynchoronous and when sequence is missing during execution.
 
-  Scenario #1.
-  
  ^^ Go Through Points ^^
  >
  >
  >
  >
  ********
- ###SYSTAX TO REMEMBER###
+ ### EPLAINATIONS TO REMEMBER ###
  
  	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
- 	//not auto generated stub.
- 	
+
+		SYNCHRONOUS EXECUTION:
+
+		program thread: [1] --> [2] --> ||||||||||||||||||||||||||||||--> [3] --> [4]
+		code executed
+
+		else where:						[waiting for the response 5ms] 
+		<===================== 45ms =============================>
+
+		ASYNCHRONOUS EXECUTION:
+
+		program thread: [1] --> [2] --> [4] --> [3]
+		code executed					 ||
+		else where:    [waiting for the response 5ms] 
+		<===================== 40ms =============================>
+
+		in Asynchoronous JavaScript if one step is taking time remaining time is used in 
+		executing next steps and parallel wait for the response is done in order to improve 
+		the efficiency by reducing the wait time. net execution time is reduced by 5ms.
+		
+		"JS works on different threads and you code is always execute on a seperate thread."
+
  	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
- 
- NOTES on Syntax:
  
  *******
  ###CODE TO REMEMBER###
  
  	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
- 	//not auto generated stub.
+ 	//Fixing the Asynchoronous JavaScript.'
+
+	 console.log(); //as this is js hence, its Asynchoronous.
+
+	 browser.get("URL").then(function() {
+		console.log("this is exected after that one.")
+	 })
+
+	 // then methods adds dependency to the function that are written inside the block.
  	
  	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
  
  NOTES on Code:
- 
+	for js codes or retriving methods in protractor use above code to implement the Synchronization
+	very fun.
  
  *******
  closure:
- 
+	 The challanging part of the protractor is complete and now we know everything. If you have went 
+	 for blogs; every blogs are filled with technical jargon and nomenclature.
  ******** End *******
  

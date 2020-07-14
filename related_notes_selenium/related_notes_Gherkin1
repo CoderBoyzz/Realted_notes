@@ -1,0 +1,206 @@
+/*
+ * @topic : Gherkins language and cucumber framework.
+ * @definition :	The only thing cucumber framework will give is a neat structure for
+ * 					automation and design. but no API to automate. Gherkin is the language 
+ * 					to write the feature file for BDD.
+ * @tags :	<theory> <framework>
+ *
+ * @note:	tips to remember:
+ *			* Maven gives you the ready made project skeleton to work with for every kind of project. 
+ *			* Here you can manage your build as well, but Maven is called build management tool for some
+ *			  some reason. So, use the maven's auto-generated maven project directories.
+ *			* maven has a tag called <scope> which defines scope of dependencies in project.
+ */
+ 
+ ******** Begin *******
+  Points to remember: 
+ 1.	Gherkins language can be installed as plugin in eclipse.
+ 2.	cucumber cannot understand any project directory structure in should be in a proper directory 
+	structure which you need to define in order for cucumber to understand and run the test cases from.
+	Maven can actually help in obtaining a cucumber project structure that can be used. 
+ 3. Maven artifactId = "maven-archtype-quickstart" is the template which cucumber supports, so use that 
+ 	template.
+ 4. Concept of feature file is used in cucumber Automation and we will automate this file only.
+ 	And we also need step-definition file. all the scenarios are defined in step-definition. This is
+ 	to automate the plain English file. and Third thing is test runner this runs all the test case 
+ 	provided in the feature file. so we need to give path to the feature file and to automate this 
+ 	we need to give step-definition file path along with it. based on the docs provided this test runner
+ 	will execute them together. This test runner is j-unit test runner.
+ 5. Common interview question which comes is what are the common terminologies used in cucumber automation.
+ 6.	Cucumber takes Project Skeleton very seriously.
+ 7. Rule for cucumber BDD is one implementations per one Gherkin line. 	
+ 	
+ 
+ ********
+ NOTES:
+ 	Understanding cucumber dependencies:
+ 	> common dependencies used to run cucumber are:
+ 	> cucumber- java.
+ 	> cucumber- j-unit.
+ 	> j-unit itself.
+	
+	Running test runner with test runner:
+	You will create another class called test runner. You need to give the feature file 
+	path along with the step-definition file path. For that you need to use the annotation
+	called @cucumber options.
+	
+	Parameterized step-definition:
+	parameterized file is allowed in step definition file in cucumber.
+	like [When User logged with username "jhon" and password "234"].
+	
+	NOte: PendingException(); //what is this Exception. <theory>
+	
+ 
+  EFFECTIVE E.G. :
+  
+  Scenario #1:
+	So, when we define step-definition files to map the automation code to feature file. Suppose for scenario
+	where given land on landing page, When I click on the sign-in button( this is a scenario ). When you define 
+	a step definition file you will write an automation code to tie up the code to this line. 
+	
+  Scenario #1.
+  
+ ^,^ Go Through Points ^.^
+ 
+ >	create a java package "feature" under src/java/test and under features 
+ 	create a file called "Login.feature" this is a feature file extension.
+ 	click finish. This file is what we call test case.
+ >	warning when feature file is complete there's warning saying where is the 
+ 	step-definition along with this file to automate the code. 
+ >	Mapping step-definition file to feature file.
+ >	Cucumber also commits to business Analyst, Clients and Automation developers to 
+ 	achieve 100% test coverage.
+ 	
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//Test Runner file.
+ 	
+	import org.junit.runner.RunWith;
+	import io.cucumber.junit.Cucumber;
+	import io.cucumber.junit.CucumberOptions;
+	
+	@RunWith(Cucumber.class)
+	@CucumberOptions(
+			features = "src/test/java/features",
+			glue = "StepDef")
+	public class TestRunner {}
+	
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Syntax:
+ 	
+ 	cucmberOptions annotation takes two arguments one is the path to feature file upto package
+ 	level like "features" as IRL we will have 100 of feature files. But you can give file name 
+ 	to path deliberately like "features/Login.feature" and step definition package name glued or mapped
+ 	to the feature file like "stepDefinitions". We need not to give any deliberate file name here. 
+ 	
+ 	For the sake of simplicity and hassle free coding put step definition and feature file packages 
+ 	under same parent like "src/java/test". 
+ 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+	 	//inside the feature file "Login.feature".
+	 	
+		//this is gherkin Style programming.
+		
+	 	Feature: Application Login;
+	
+		Scenario: Home page default login
+			
+		Given User is on Net Banking landing page
+		When User logs into application with username and password
+		Then Home page is populated
+		And Cards are displayed
+		
+		//step-definition file code
+		
+		package stepDefinition;
+	
+		package stepDefinition;
+
+		import io.cucumber.java.en.And;
+		import io.cucumber.java.en.Given;
+		import io.cucumber.java.en.Then;
+		import io.cucumber.java.en.When;
+		
+		
+		
+		public class StepDef {
+
+		    @Given("User is on Net Banking landing page$")
+		    public void user_is_on_net_banking_landing_page() throws Throwable {
+		    	System.out.println("we finally hit the landing page");
+		    }
+		
+		    @When("^User logs into application with username and password$")
+		    public void user_logs_into_application_with_username_and_password() throws Throwable {
+		    	System.out.println("logged into account access granted");
+		    }
+		
+		    @Then("^Home page is populated$")
+		    public void home_page_is_populated() throws Throwable {
+		    	System.out.println("populated home page");
+		    }
+		
+		    @And("^Cards are displayed$")
+		    public void cards_are_displayed() throws Throwable {
+		    	System.out.println("tada!!! cards ");
+		    }
+		
+		}
+		
+		//syntax of parameterized Gherkin line 
+		
+		[When User logged with username "jhon" and password "234"]. //feature file.
+		
+		
+		@When("When User logs into application with username {string} and password {string}$")
+		public void when_user_logs_into_application_with_username_and_password(String username, String password) {
+			// Write code here that turns the phrase above into concrete actions
+			System.out.println("Access Granted : user name :"
+					+ username + " and password : " 
+					+ password);
+		}
+		
+		//other way is.
+		@When("When User logs into application with username \"([^\"]*)\" and password \"([^\"]*)\"$")
+		
+		Another Example: 
+		Then Cards are displayed "true"
+		
+		@Then("^Cards are displayed {boolean}$")
+		void cards_are_displayed(boolean status) {
+			//code to log the card status.
+		}
+		
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Code:
+ 	
+ 	How this works is first the test runs checks the scenarios and then identify which what are the 
+ 	Given, When and Then. it comes to the step-definition file and find the exact map of in the given
+ 	annotation of @Given("scenario") reads the line and find which matches to the given requirement
+ 	and execute the method associated with it.
+	
+	One tool that can generate all the step-definition automatically. The tool is "TidyGherkins"
+	or "Pretty Gherkin" plugin.Its an chrome app extension and used to automate step and definition.
+	
+	When you put some thing in double quotes("") cucumber automatically treats it as a **argument** and 
+	pass a regular expression in place of values and defines **Parameters** in methods to catch those 
+	parameters and if you miss this step. it will throw and error saying "mismatch : the method is 
+	declared with 0 parameters. however, Gherkin line has 2 arguments". This also helpful for creating 
+	one implementation with variables included. 
+	
+ *******
+ closure:
+ 	Now for selenium users can actually take these parameters and write code:
+ 	"driver.findElemetn(by.**).sendKeys(userName);" 
+ 	"driver.findElemetn(by.**).sendKeys(Password);"
+ 	and Automate the scenario with these test cases. 
+ 	
+ ******** End *******
+ 

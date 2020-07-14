@@ -27,18 +27,18 @@
 	
 	
 	+-----------------------------------------------------------------+
-	|	Process scope = PowerShell Environment vairable					|
-	|	available in current session/process											|
-	|																											|
-	|	Inherited from parent process and constructed from 				|
-	|	Machine scope or user scope variables.									|
-	|																											|
-	|	Changing the environment varaible in PS affects only 			|
-	|	The current session. 	This behavior resembels "Set" cmd 		|
-	|	Windows command Shell and "Setenv" command in  			|
-	|	UNIX-based environments. To change values in the Machine|
-	|	or user Scopes, you must use the methods of  						|
-	| 	*****System.Enviroment**** class.											|
+	|	Process scope = PowerShell Environment vairable					
+	|	available in current session/process							
+	|																	
+	|	Inherited from parent process and constructed from 				
+	|	Machine scope or user scope variables.									
+	|																											
+	|	Changing the environment varaible in PS affects only 			
+	|	The current session. 	This behavior resembels "Set" cmd 		
+	|	Windows command Shell and "Setenv" command in  			
+	|	UNIX-based environments. To change values in the Machine
+	|	or user Scopes, you must use the methods of  						
+	| 	*****System.Enviroment**** class.											
 	+-----------------------------------------------------------------+
 	
 	

@@ -1,0 +1,181 @@
+/*
+ * @topic : JS element basics.
+ * @definition : concept of Gobal variables of Protractor.
+ * @tags :
+ *
+ * @note: Selenium can't work with the Angular websites for more than four - five times 
+		  if it does the message pops up saying "it detected some robotic automation and stops 
+		  executions for 24 hours". Angular has one feature where it can detect the robot traffic
+		  and shut the execution.
+
+		  protractor automation is the fastes tool which is available in the market. whether its 
+		  webdriver(except js) or its Qtp.
+ */
+ 
+ VVVVVVVVVVVVVVVVVVVV starts here VVVVVVVVVVVVVVVVVV
+
+  POINTS TO NOTE: 
+
+	1.	model and concept of model in Protractor.
+		key difference b/w a regular website and angular websites are attributes.
+		e.g. <input ng-model='first' type='text' class='ng-valid ng-touched ng-dirty'/>
+		<button ng-click='doAddition()' id='goButton'/>
+
+	2.	Global variables in Protractor:
+		>	browser: A wrapper around an instance of WebDriver used for navigation and page-wide information.
+			The browser.get method loads a page. Protractor expects Angular to be present on a page. so it will
+			throw an error if the page it is attempting to load does not contain the Angular library. (If you need 
+			to interact with a non-angular page, you can access wrapper webdriver instance directly with browser.webdriver)
+		
+		>	element: A helper function for finding and interacting with DOM elements on the page you are testing.
+			The element function searches for an element on the page. It requires on parameter, a locator strategy
+			for locating the element.
+
+		>	by:A collection of elements locators strategies. For Example, elements can be found by CSS selector, by ID 
+			or by the attribute they are bound with ng-model.
+
+		>	Protractor: The Protractor namespace which wraps the WebDriver namespace. Contains static variables and classes 
+			such as Protractor.key which enumarates the code for special keyword signals.
+
+	3. Element require locator strategy to work to begin with. Protractor exports locators factories on the global 
+	 	by Object. The most common locators. css, model, binding and so on. 
+		but it also supports webdriver extended className, xpath, linkText, js, name etc.
+		and supports protractor only locator startegy like buttonText, repeater(find element inside ng-repeat), 
+		cssContainingText(element by css which contains certains String), deepCss(element by css selector within 
+		the Shadow DOM) and many more.
+
+	4.	Its prefered to use angular locators as they have seen many instablity around angular JS apps.
+
+	5.	getText() require promise resolution and two potential problem with promise resolution one is 
+		false results and inaccuracy and other one is irregular control flow with Asynchronous JavaScript.
+		<promise need some deepStudy on practicality>	
+
+	6.	One of the cool feature of Angular is that the waits in components is implicitly resolved while automating 
+		with protractor unlike webdriver it does not have any added synchronization issues due to uneven loading 
+		or wait resuting in error due to visibility. etc. 
+
+	7. For Non-Angular and even Angular Selenium is the king but its little painful as you won't see typical html 
+		attributes to work with it will all be angular attributes.
+ 
+ 
+^.^ GO THOROUGH POINTS ^.^
+
+	=> e.g. of Jasmie Assertions like 
+		toBe(), notToBe(), toBeNull(), toEquals() and so on.
+
+	=> if you don't provide any browser in configuration file they run on chrome.
+		you need to modify configuration file. To use different browser we need to add browser 
+		info into the capabilities Object of configuration file. you need to set seperate binaries
+		to run tests in IE or Android browser. 
+
+	=>	path "AppData/Roaming/npm/node_modules/**protractor**/node_modules/webdriver-manager/Selenium/"
+		here all the folders are located. you need to add sperate binaries.
+
+	=> 	You can run protractor test with out starting a server but that is inconsitent for browsers other 
+		that chrome. To do this you need to comment out the line saying "seleniumAddress: 'http://localhost:4444/wd/hub'".
+		This is called direct connect.
+
+
+ *******
+ ### FIGURATIVE STUDY ###
+
+	EFFECTIVE EXAMPLES/SCENARIOS :
+  
+  	Scenario #1.:
+	  	 If you want to compare the given results with the expected value we need something called assertion.
+		jasmine language provides that assertion.
+  	Scenario #2.
+  
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		Notes on Jamine Asserstions: 
+		in Jasmine frame work the assertion syntax 
+		//expected(true).tobe(true);
+
+		jasmine has built in support by protractor hence, it along with protractor handles 
+		the concept of promise resolution.
+		
+		if you fail the assertion then Error logs will say 
+		"Massage: expected something but the value is 'something else'
+		Stack:
+			Error: Failed Expectation."
+		
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ *******
+ ### REALTED SYTAX/CODES ###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+		//most common locators are
+		 by.css('.myclass');
+		 by.id('myid');
+		 by.name("field_name");
+		 by.model("name");
+		 by.binding('bindingName'); 	
+
+		 //jasmine code;
+		 var webElement = element(by.css("h2[class='ng-building']"));
+        expect(webElement.getText()).toBe('8');
+
+		//to change the desired capabilities of protracator 
+		?? just change capabilities object of cofiguration setting.
+
+		exports.config = {
+			seleniumAddress: 'http://localhost:4444/wd/hub',
+			specs: ['elementBasics.js'], //specs or test files
+			capabilities: {
+				'browserName': 'firefox',//to change to firefox browser.
+				'browserName': 'Internet Explerer', //for IE.
+				'browserName': 'chrome',
+			},
+		};
+
+	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+	 	//code of the topic
+		 
+		describe('element basics tests', () => {
+			it('core component protractor', () => {
+				browser.get('http://juliemr.github.io/protractor-demo/');        
+				
+				element(by.model("first")).sendKeys("5");
+				element(by.model("second")).sendKeys("4");
+				element(by.id("gobutton")).click().then(function() {
+					//<h2 class="ng-binding"/> concept of binding in protractor.
+
+					var result = element(by.css("h2.ng-binding")).getText();
+					console.log(result);
+				});
+				var webElement = element(by.css("h2[class='ng-building']"));
+				expect(webElement.getText()).toBe('8');
+			});
+		});
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ *******
+ closure:
+	Q. How to run protractor tests in non-Angular websites?
+	A. When an Angular website is loaded protractor waits for the angular components to loaded
+		and once the angular app is loaded then protractor start to execute things.
+	
+	Q. Difference b/w Angular and Non-Angular Websites?
+	A. the source code for that websites will have extreme emphasis on word ng* through out the 
+		code. 
+	
+	Q. what happens if you give non-Angular Websites in protractor.
+	A. firstly, what happens when you give wrong url like "htttp://google.com" error logs will say
+		"Failures: 
+		Massage: Failed: waiting for page to load for 10000ms wait timed out after 10002ms."
+		But, if we give a non-Angular apps "http://google.com" then protracotor will wait to see if
+		it gets any Angular components then throws error. Error says:
+		"Failures: 
+		Massage: Failed: angular could not be found on the page http://google.com. If this is not an 
+		angular application, you may need to turn off waiting."
+	
+	Q. How to run Non-Angualar websites in protractor?
+	A. Concept of TimeOuts: if you work on non Angular apps you can turn off waiting with 
+	 	"browser.waitForAngularEnabled(false);". Not mix angular an non-angular cuz you just disabled 
+		 the library enabling doesn't makes any sense.
+	
+ 
+ ******** End *******
+ 

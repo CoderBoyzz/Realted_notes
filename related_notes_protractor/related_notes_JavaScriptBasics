@@ -1,0 +1,126 @@
+/*
+ * @topic : javascript basics and all the components of coding basic JS program.
+ *
+ * @note:
+ */
+ 
+ ******** Begin *******
+  Java Script Basics:
+  >	Printing in the console.
+  >	Javascript Data types.
+  >	Javascript Conditional Statement.
+  >	JS loop.
+  >	JS Operator.
+  >	JS Functions.
+  >	JS Array.
+  >	JS Strings.
+  >	Importance of Objects in JavaScript.
+  >	Ways of creating JS Objects.
+
+ ********
+ NOTES:
+ **data types**
+	Static type of the variable are not generally used in JS rather dynamic datatypes 
+	like "var" & "let" are used which allocate space according to the implementation
+	of the variable. 
+	<difference b/w let and var and scope of these datatypes>
+
+**coditinal statement**
+	The branch is executed based on the condition given. if the condition is ture then the 
+	true brach is exectued other wise a false branch is executed. condition could be any 
+	logical condition or values like truthy and falsy value. comparison opetator in JS is 
+	not to use "==" but use "===" as its little more consitent.
+	<difference b/w == and === in JS> 
+
+	e.g. while('condtion check') {'execution until the condition is false'} 
+		for('initiation';'condition check';'modification') {'execution until the condition is false
+				and then modification'}
+		do {'exection until condition is false'} while('condition');
+		for(var a in arr) {} //enhanced for loop is working wierd.
+
+**functions is JS**
+	The functions in JS is an Objects cuz everything in JS ia an object.
+	class, object, function and Arrays all of this unltimately becomes Object. 
+	os function are basically a piece of code that you want to repeat and decreasing 
+	the repetition. 
+
+	if you mess up and try to use an undeclared function the error logs say "ReferenceError: name
+	is not defined at Object.<anonymous>". Which means No reference found for this anonymous object 
+	you are trying to call. 
+
+**Javascript arrays**
+	Its a collection of variables or Objects. this is used to bind the logically inter-ralated 
+	and some times (not generally) same typed variables. As JS is dynamically typed language so 
+	it can't have a consistency or homogeniuty or strictness by default, it depends on the user.
+	this needs to be taken care of.
+
+**JavaScript String**
+	JS treats everything as a string when we use console.log() function. Hence, it implicitly 
+	converts(casts) integers, decimal and boolean to string and concatinate it to the rest of 
+	string. 
+	e.g.
+	String[] split(String delimiter, integer limit); //generally.
+	String slice(integer indexFirst, integer indexAfterLast); 	//generally but not in java
+																//subString();
+	String trim();
+	we generally use string literal declaration and also with the help of new keyword.
+
+****
+
+
+
+ ^^ Go Through Points ^^
+ >	JavaScript along with python is a dynamic typed language.It means that data types
+ 	 whether its string or integer is decided during compile time rather than defining 
+	 explicitly itself in the code. 
+ >
+ >
+ >
+ ********
+ ###SYSTAX TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//functions in JS.
+	 function name(a, b) {
+			return a - b;
+		}
+
+		name(a, b)
+
+	//arrays in JS
+	var arr = ['this', 'that', 'these', 'those',];
+
+	var arr = new Array();
+	arr[0] = 'this';
+	arr[1] = 'is';
+	arr[2] = 'not good';
+
+ 	
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Syntax:
+ 
+ *******
+ ###CODE TO REMEMBER###
+ 
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 	//not auto generated stub.
+ 	
+ 	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ 
+ NOTES on Code:
+ 
+ 
+ *******
+ closure:
+	if you remove i++ from the loop incrementing condition then the loop will continue for
+	ever same will happen if you use relational operator the wrong way like "i = 0;i > -1;".
+
+	e.g. for(var i = 0; i < count; i++) {
+			console.log('loop running!!');
+		}
+
+	come after 10 years the loop will still be running.
+ 
+ ******** End *******
+ 
